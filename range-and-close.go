@@ -18,6 +18,7 @@ package main
 import "fmt"
 
 func fibonacci(n int, c chan int) {
+
 	x, y := 1, 2
 	for i := 0; i < n; i++ {
 		c <- x
@@ -27,7 +28,7 @@ func fibonacci(n int, c chan int) {
 }
 
 func main() {
-	c := make(chan int, 20)
+	c := make(chan int, 10)
 	go fibonacci(cap(c), c)
 	for i := range c {
 		fmt.Println(i)
